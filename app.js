@@ -1,6 +1,5 @@
 //TODO:read file and get all users
 const file = require('./users.json');
-const fs = require('fs');
 
 const getFirstUser = () => {
   //TODO: get first user of list
@@ -48,62 +47,18 @@ const addNewUser = (userObject) => {
   return file.push(userObject);
 };
 
+// it will update user in file object only, not the original users
 const updateUser = (userID) => {
   //TODO: update email when id === userID
   const user = getUserByID(userID);
   user.email = '';
 
   return user;
-
-  // fs.readFile('./users.json', 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.log(err);
-  //     return
-  //   }
-
-  //   const jsonData = JSON.parse(data);
-
-  //   jsonData.map((v, i) => {
-  //     if (i === userID) {
-  //       v.email = newEmail;
-  //     }
-  //   });
-
-  //   const newData = JSON.stringify(jsonData, null, 2);
-
-  //   changeFile(newData);
-  // });
-
 };
 
+// it will delete user from file object only, not the original users
 const deleteUserById = (userID) => {
   //TODO: remove user when id === userID
   const newList = file.filter((v, i) => v.id !== userID);
   return newList;
-
-  // fs.readFile('./users.json', 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.log(err);
-  //     return
-  //   }
-
-  //   const jsonData = JSON.parse(data);
-
-  //   jsonData.splice(userID, 1);
-
-  //   const newData = JSON.stringify(jsonData, null, 2);
-
-  //   changeFile(newData);
-  // });
 };
-
-// function changeFile(data) {
-//   fs.writeFile('./users.json', data, 'utf8', (err) => {
-//     if (err) {
-//       console.log(err);
-//       return
-//     }
-
-//     console.log('user modified');
-//   });
-// }
